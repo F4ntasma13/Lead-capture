@@ -138,7 +138,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Certifique-se de estar no "app" dir
+import { useRouter } from "next/navigation";
 
 const LeedsRegistration: React.FC = () => {
   const [data, setData] = useState({
