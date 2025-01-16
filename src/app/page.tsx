@@ -13,7 +13,7 @@ export default function Home() {
           <nav>
             <ul className="flex space-x-4">
               <li>
-                <a href="#home" className="hover:underline">
+                <a href="https://conexaolinkes.com.br/" className="hover:underline">
                   Início
                 </a>
               </li>
