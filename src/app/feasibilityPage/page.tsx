@@ -1,0 +1,17 @@
+
+import Footer from "@/componets/footer"
+import Header from "@/componets/header"
+import FeasibilityForm from "@/componets/viability/view"
+
+
+const Plan = () => {
+  return (
+    <div>
+      <Header />
+      <FeasibilityForm />
+      <Footer />
+    </div>
+  )
+}
+  
+export default Plan

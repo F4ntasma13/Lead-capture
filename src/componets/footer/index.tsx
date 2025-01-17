@@ -1,10 +1,6 @@
-import PlanSelection from "@/componets/pagePlanos/page/plan-selection"
-
-const Plan = () => {
-  return (
-    <div>
-      <PlanSelection />
-      <footer className="bg-gradient-to-r from-blue-600 to-green-500 text-white py-4 text-center">
+const Footer = () => {
+    return (
+        <footer className="bg-gradient-to-r from-blue-600 to-green-500 text-white py-4 text-center">
         <div className="container mx-auto text-center">
           <p className="text-sm">
             © 2025 Todos os direitos reservados | Desenvolvido por Conexão Link
@@ -22,8 +18,7 @@ const Plan = () => {
           </div>
         </div>
       </footer>
-    </div>
-  )
+    )
 }
-  
-export default Plan
+
+export default Footer
