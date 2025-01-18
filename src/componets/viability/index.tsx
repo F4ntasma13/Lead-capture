@@ -48,7 +48,7 @@ const FeasibilityForm: React.FC = () => {
       if (response.ok) {
         alert("Viabilidade enviada com sucesso! Agora é com a gente!");
         if (router) {
-          router.push("https://conexaolinkes.com.br/"); // Redirecionar para a próxima etapa
+          router.push("https://conexaolinkes.com.br/");
         }
         console.log(data);
       } else {

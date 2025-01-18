@@ -6,14 +6,17 @@ const Footer = () => {
             © 2025 Todos os direitos reservados | Desenvolvido por Conexão Link
           </p>
           <div className="flex justify-center space-x-6 mt-4">
-            <a href="#facebook" className="text-white hover:text-gray-400">
+          <a href="https://api.whatsapp.com/send?phone=2740424240" className="text-white hover:text-gray-400">
+              WhatsApp
+            </a>
+            <a href="https://www.instagram.com/conexaolink.es/" className="text-white hover:text-gray-400">
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/conexaolinkes.fibra" className="text-white hover:text-gray-400">
               Facebook
             </a>
-            <a href="#twitter" className="text-white hover:text-gray-400">
-              Twitter
-            </a>
-            <a href="#linkedin" className="text-white hover:text-gray-400">
-              LinkedIn
+            <a href="https://www.tiktok.com/@conexaolink.es" className="text-white hover:text-gray-400">
+              Tiktok
             </a>
           </div>
         </div>

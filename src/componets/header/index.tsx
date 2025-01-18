@@ -11,17 +11,22 @@ const Header = () => {
             <ul className="flex space-x-4">
               <li>
                 <a href="https://conexaolinkes.com.br/" className="hover:underline">
-                  Início
+                  Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="hover:underline">
-                  Sobre
+                <a href="https://conexaolinkes.com.br/residencial/" className="hover:underline">
+                  Residencial
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:underline">
-                  Contato
+                <a href="https://conexaolinkes.com.br/empresarial/" className="hover:underline">
+                  Empresarial
+                </a>
+              </li>
+              <li>
+                <a href="https://conexaolinkes.com.br/condominio/" className="hover:underline">
+                  Predial
                 </a>
               </li>
             </ul>

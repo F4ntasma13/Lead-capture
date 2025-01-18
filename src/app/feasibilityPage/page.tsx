@@ -6,7 +6,9 @@ const Plan = () => {
   return (
     <div>
       <Header />
-      <FeasibilityForm />
+      <main>
+        <FeasibilityForm />
+      </main>
       <Footer />
     </div>
   )
