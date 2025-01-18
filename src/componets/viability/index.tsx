@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const FeasibilityForm: React.FC = () => {
+  const router = typeof window !== "undefined" ? useRouter() : null;
   const [formData, setFormData] = useState({
     cep: "",
     cidade: "",
@@ -24,7 +26,7 @@ const FeasibilityForm: React.FC = () => {
     e.preventDefault();
 
     // Validação básica
-    if (!formData.cep || !formData.cidade || !formData.bairro || !formData.rua) {
+    if (!formData.cep || !formData.cidade || !formData.bairro || !formData.rua || !formData.numero) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
@@ -32,11 +34,11 @@ const FeasibilityForm: React.FC = () => {
     setError("");
 
     try {
-      const response = await fetch("http://IP/webservice/v1/viabilidade_tecnica", {
+      const response = await fetch("/api/installation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer SEU_TOKEN`, // Substitua pelo token correto
+          // Authorization: `Bearer SEU_TOKEN`, // Substitua pelo token correto
         },
         body: JSON.stringify(formData),
       });
@@ -44,8 +46,11 @@ const FeasibilityForm: React.FC = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Viabilidade enviada com sucesso!");
-        console.log(data); // Exibe o resultado da API
+        alert("Viabilidade enviada com sucesso! Agora é com a gente!");
+        if (router) {
+          router.push("https://conexaolinkes.com.br/"); // Redirecionar para a próxima etapa
+        }
+        console.log(data);
       } else {
         alert(`Erro: ${data.message || "Problema ao enviar os dados."}`);
       }
@@ -63,7 +68,6 @@ const FeasibilityForm: React.FC = () => {
         <form onSubmit={handleSubmit}>
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
-          {/* Seletor de Local */}
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Local:</label>
             <div className="flex space-x-4">
@@ -89,21 +93,9 @@ const FeasibilityForm: React.FC = () => {
                 />
                 <span>Meu apartamento</span>
               </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="local"
-                  value="condominio"
-                  checked={formData.local === "condominio"}
-                  onChange={handleChange}
-                  className="text-blue-500"
-                />
-                <span>Condomínio de casas</span>
-              </label>
             </div>
           </div>
 
-          {/* Campos do Formulário */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
@@ -155,11 +147,11 @@ const FeasibilityForm: React.FC = () => {
             />
           </div>
 
-          {/* Botões */}
           <div className="flex justify-between items-center mt-6">
             <button
               type="button"
               className="bg-gray-200 text-gray-700 px-4 py-2 rounded shadow-md hover:bg-gray-300"
+              onClick={() => router?.back()}
             >
               Voltar
             </button>

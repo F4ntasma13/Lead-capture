@@ -1,6 +1,6 @@
 import Footer from "@/componets/footer"
 import Header from "@/componets/header"
-import PlanSelection from "@/componets/plan-selection/view"
+import PlanSelection from "@/componets/plan-selection"
 
 const Plan = () => {
   return (

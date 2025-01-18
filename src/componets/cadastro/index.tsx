@@ -162,7 +162,7 @@ const LeedsRegistration: React.FC = () => {
       });
 
       if (response.ok) {
-        alert("Cadastro realizado com sucesso!");
+        // alert("Cadastro realizado com sucesso!");
         setData({
           local: "casa",
           nome: "",
@@ -231,7 +231,7 @@ const LeedsRegistration: React.FC = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Nome Completo"
+            placeholder={data.local === "casa" ? "Nome Completo" : "Razão Social"}
             value={data.nome}
             onChange={(e) => setData({ ...data, nome: e.target.value })}
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"

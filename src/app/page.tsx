@@ -1,4 +1,4 @@
-import LeedsRegistration from "@/componets/cadastro/view";
+import LeedsRegistration from "@/componets/cadastro";
 import Footer from "@/componets/footer";
 import Header from "@/componets/header";
 
