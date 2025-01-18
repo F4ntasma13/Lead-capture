@@ -12,6 +12,8 @@ const PlanSelection: React.FC = () => {
     { speed: "700 MEGA", price: "R$ 129,90/mês", details: "PLANO INTERNET + GLOBOPLAY 700MB" },
   ];
 
+
+
   const handleSelectPlan = async (plan: typeof plans[0]) => {
     try {
       const response = await fetch("/api/plans", {
