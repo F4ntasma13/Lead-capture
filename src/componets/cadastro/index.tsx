@@ -154,6 +154,7 @@ const LeedsRegistration: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",

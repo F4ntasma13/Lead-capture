@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       details: ''
     };
     
-    const response = await fetch(`${host}/webservice/v1`, {
+    const response = await fetch(`${host}/webservice/v1/crm_leads`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -28,10 +28,9 @@ export async function POST(request: Request) {
       })
     });
 
-    // Trata a resposta da API externa
     if (!response.ok) {
-      const errorResponse = await response.text(); // Captura erro detalhado
-      console.error('Resposta da API:', errorResponse); // Log para debug
+      const errorResponse = await response.text(); 
+      console.error('Resposta da API:', errorResponse); 
       return new Response(
         JSON.stringify({
           message: "Erro ao cadastrar lead na API IXC Soft.",
