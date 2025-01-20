@@ -137,7 +137,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const LeedsRegistration: React.FC = () => {
@@ -149,11 +149,32 @@ const LeedsRegistration: React.FC = () => {
     cep: "",
   });
 
+  const [errors, setErrors] = useState({
+    nome: false,
+    email: false,
+    fone_residencial: false,
+    cep: false,
+  });
+
   const router = typeof window !== "undefined" ? useRouter() : null;
+
+  const validateForm = () => {
+    const newErrors = {
+      nome: !data.nome.trim(),
+      email: !data.email.trim(),
+      fone_residencial: !data.fone_residencial.trim(),
+      cep: !data.cep.trim(),
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some((error) => error);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       const response = await fetch("/api/leads", {
@@ -163,7 +184,6 @@ const LeedsRegistration: React.FC = () => {
       });
 
       if (response.ok) {
-        // alert("Cadastro realizado com sucesso!");
         setData({
           local: "casa",
           nome: "",
@@ -235,8 +255,13 @@ const LeedsRegistration: React.FC = () => {
             placeholder={data.local === "casa" ? "Nome Completo" : "Razão Social"}
             value={data.nome}
             onChange={(e) => setData({ ...data, nome: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className={`w-full p-2 border ${
+              errors.nome ? "border-red-500" : "border-gray-300"
+            } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
+          {errors.nome && (
+            <p className="text-sm text-red-500 mt-1">Nome é obrigatório.</p>
+          )}
         </div>
         <div className="mb-4">
           <input
@@ -244,17 +269,31 @@ const LeedsRegistration: React.FC = () => {
             placeholder="E-mail"
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className={`w-full p-2 border ${
+              errors.email ? "border-red-500" : "border-gray-300"
+            } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
+          {errors.email && (
+            <p className="text-sm text-red-500 mt-1">E-mail é obrigatório.</p>
+          )}
         </div>
         <div className="mb-4">
           <input
             type="text"
             placeholder="Telefone de Contato"
             value={data.fone_residencial}
-            onChange={(e) => setData({ ...data, fone_residencial: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+            onChange={(e) =>
+              setData({ ...data, fone_residencial: e.target.value })
+            }
+            className={`w-full p-2 border ${
+              errors.fone_residencial ? "border-red-500" : "border-gray-300"
+            } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
+          {errors.fone_residencial && (
+            <p className="text-sm text-red-500 mt-1">
+              Telefone de contato é obrigatório.
+            </p>
+          )}
         </div>
         <div className="mb-6">
           <input
@@ -262,8 +301,13 @@ const LeedsRegistration: React.FC = () => {
             placeholder="CEP"
             value={data.cep}
             onChange={(e) => setData({ ...data, cep: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className={`w-full p-2 border ${
+              errors.cep ? "border-red-500" : "border-gray-300"
+            } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
+          {errors.cep && (
+            <p className="text-sm text-red-500 mt-1">CEP é obrigatório.</p>
+          )}
         </div>
         <button
           type="submit"
@@ -277,6 +321,7 @@ const LeedsRegistration: React.FC = () => {
 };
 
 export default LeedsRegistration;
+
 
 
 

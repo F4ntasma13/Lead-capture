@@ -12,20 +12,17 @@ const PlanSelection: React.FC = () => {
     { speed: "700 MEGA", price: "R$ 129,90/mês", details: "PLANO INTERNET + GLOBOPLAY 700MB" },
   ];
 
-
-
   const handleSelectPlan = async (plan: typeof plans[0]) => {
     try {
-      const response = await fetch("/api/plans", {
+      const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(plan),
       });
 
       if (response.ok) {
-        // alert(`Plano ${plan.speed} selecionado com sucesso!`);
         if (router) {
-          router.push("/feasibilityPage"); // Redirecionar para a próxima etapa
+          router.push("/feasibilityPage");
         }
       } else {
         const errorData = await response.json();

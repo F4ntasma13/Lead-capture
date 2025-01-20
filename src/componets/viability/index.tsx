@@ -9,10 +9,12 @@ const FeasibilityForm: React.FC = () => {
     cep: "",
     cidade: "",
     bairro: "",
-    rua: "",
     numero: "",
     complemento: "",
     local: "casa",
+    endereco: "", 
+    estado: 'ES',
+
   });
 
   const [error, setError] = useState("");
@@ -26,7 +28,7 @@ const FeasibilityForm: React.FC = () => {
     e.preventDefault();
 
     // Validação básica
-    if (!formData.cep || !formData.cidade || !formData.bairro || !formData.rua || !formData.numero) {
+    if (!formData.cep || !formData.cidade || !formData.bairro || !formData.endereco || !formData.numero) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
@@ -34,7 +36,7 @@ const FeasibilityForm: React.FC = () => {
     setError("");
 
     try {
-      const response = await fetch("/api/installation", {
+      const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,9 +125,9 @@ const FeasibilityForm: React.FC = () => {
             />
             <input
               type="text"
-              name="rua"
+              name="endereco"
               placeholder="Rua"
-              value={formData.rua}
+              value={formData.endereco}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
             />

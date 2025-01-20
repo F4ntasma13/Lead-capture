@@ -10,19 +10,12 @@ export async function POST(request: Request) {
     const tokenBase64 = Buffer.from(token).toString('base64');
 
     const leadData = {
-      principal: "N",
-      id_cliente: "",
-      nome: data.nome,
-      tipo_pessoa: "F",
-      cnpj_cpf: data.cnpj_cpf || "",
-      email: data.email || "",
-      fone_residencial: data.fone_residencial,
-      cep: data.cep || "",
-      endereco: data.endereco || "",
-      bairro: data.bairro || "",
-      cidade: data.cidade || "",
-      lead: "S",
-      ativo: "S",
+      endereco: 'Av. Getúlio Dorneles Vargas', //obrigatório, endereço rua,avenida,logradouro,etc
+      numero: 'S78',//obrigatório, numero do local
+      bairro: 'Centro', //bairro do local
+      cidade: 'Chapecó',//obrigatório, cidade do local
+      estado: 'ES',//obrigatório, estado (SIGLA) do local
+      cep: '89805-001'// CEP do local
     };
     
     const response = await fetch(`${host}/webservice/v1/crm_leads`, {
