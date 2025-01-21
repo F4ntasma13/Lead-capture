@@ -1,140 +1,3 @@
-// "use client"
-
-// import { useState } from "react";
-
-// const LeedsRegistration: React.FC = () => {
-//   const [data, setData] = useState({
-//     local: "casa",
-//     nome: "",
-//     email: "",
-//     fone_residencial: "",
-//     cep: "",
-//   });
-
-// const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       const response = await fetch("/api/leads", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(data),
-//       });
-  
-//       if (response.ok) {
-//         alert("Cadastro realizado com sucesso!");
-//         setData({ local: "casa", nome: "", email: "", fone_residencial: "", cep: "" });
-//       } else {
-//         const errorData = await response.json();
-//         alert(errorData.message || "Erro ao cadastrar. Tente novamente.");
-//       }
-//     } catch (error) {
-//       console.error("Erro:", error);
-//       alert("Erro ao conectar com a API.");
-//     }
-//   };
-  
-
-//   return (
-//     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-//       <form
-//         onSubmit={handleSubmit}
-//         className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg"
-//       >
-//         <h2 className="text-2xl font-bold mb-4 text-gray-800">
-//           Preencha as informações corretamente
-//         </h2>
-//         <p className="text-sm text-gray-600 mb-6">
-//           Por favor, escolha o local de instalação e insira seus dados
-//         </p>
-//         <div className="mb-4">
-//           <label className="block text-sm font-medium text-gray-700">
-//             Local de instalação
-//           </label>
-//           <div className="flex items-center space-x-4 mt-2">
-//             <label className="flex items-center">
-//               <input
-//                 type="radio"
-//                 name="local"
-//                 value="casa"
-//                 checked={data.local === "casa"}
-//                 onChange={() => setData({ ...data, local: "casa" })}
-//                 className="text-blue-600 focus:ring-blue-500"
-//               />
-//               <span className="ml-2 text-gray-700">Para minha casa</span>
-//             </label>
-//             <label className="flex items-center">
-//               <input
-//                 type="radio"
-//                 name="local"
-//                 value="empresa"
-//                 checked={data.local === "empresa"}
-//                 onChange={() => setData({ ...data, local: "empresa" })}
-//                 className="text-blue-600 focus:ring-blue-500"
-//               />
-//               <span className="ml-2 text-gray-700">Para minha empresa</span>
-//             </label>
-//           </div>
-//           <p className="text-xs text-gray-500 mt-2">
-//             * O local de instalação deve ser compatível com a escolha realizada.
-//           </p>
-//         </div>
-//         <div className="mb-4">
-//           <input
-//             type="text"
-//             placeholder="Nome Completo"
-//             value={data.nome}
-//             onChange={(e) => setData({ ...data, nome: e.target.value })}
-//             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <input
-//             type="email"
-//             placeholder="E-mail"
-//             value={data.email}
-//             onChange={(e) => setData({ ...data, email: e.target.value })}
-//             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <input
-//             type="text"
-//             placeholder="Telefone de Contato"
-//             value={data.fone_residencial}
-//             onChange={(e) => setData({ ...data, fone_residencial: e.target.value })}
-//             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
-//           />
-//         </div>
-//         <div className="mb-6">
-//           <input
-//             type="text"
-//             placeholder="CEP"
-//             value={data.cep}
-//             onChange={(e) => setData({ ...data, cep: e.target.value })}
-//             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
-//           />
-//         </div>
-//         <button
-//           type="submit"
-//           className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300"
-//         >
-//           Próximo
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-
-
-
-// export default LeedsRegistration
-
-
-
-
-
-
 "use client";
 
 import { useState } from "react";
@@ -142,17 +5,88 @@ import { useRouter } from "next/navigation";
 
 const LeedsRegistration: React.FC = () => {
   const [data, setData] = useState({
-    local: "casa",
-    nome: "",
-    email: "",
-    fone_residencial: "",
-    cep: "",
+    "nome": "",
+    "principal": "",
+    "id_cliente": "",
+    "tipo_pessoa": "",
+    "cnpj_cpf": "",
+    "data_nascimento": "",
+    "razao": "",
+    "id_filial": "",
+    "id_contato_tipo": "",
+    "id_candidato_tipo": "",
+    "id_campanha": "",
+    "id_concorrente": "",
+    "id_responsavel": "",
+    "indicado_por": "",
+    "data_cadastro": "20/01/2025",//Obrigatório
+    "data": "",
+    "id_vd_contrato": "",
+    "id_tipo_elemento": "",
+    "velocidade_calculada": "",
+    "id_fornecedor": "",
+    "lead": "",
+    "ativo": "",
+    "id_caixa_ftth": "",
+    "distancia_caixa_mais_proxima": "",
+    "id_prospeccao": "",
+    "id_estagio": "",
+    "ordem_kanban": "",
+    "fone_residencial": "",
+    "fone_comercial": "",
+    "fone_celular": "",//Obrigatório
+    "fone_whatsapp": "",
+    "email": "",
+    "skype": "",
+    "facebook": "",
+    "website": "",
+    "cep": "",
+    "endereco": "",
+    "numero": "",
+    "bairro": "",
+    "complemento": "",
+    "cidade": "",
+    "uf": "",
+    "referencia": "",
+    "moradia": "",
+    "tipo_localidade": "casa",
+    "latitude": "",
+    "longitude": "",
+    "external_id": "",
+    "external_system": "",
+    "pipe_id_pessoa": "",
+    "cadastro_site": "",
+    "status_viabilidade": "",
+    "tipo_rede": "",
+    "operador_neutro": "",
+    "data_ult_verificacao_viab": "",
+    "caixa_mais_proxima": "",
+    "data_cadastro_lead": "",
+    "velocidade_calculada_lead": "",
+    "quantidade_pessoas_lead": "",
+    "quantidade_smart_lead": "",
+    "frequencia_smart_lead": "",
+    "quantidade_celular_lead": "",
+    "frequencia_celular_lead": "",
+    "quantidade_computador_lead": "",
+    "frequencia_computador_lead": "",
+    "quantidade_console_lead": "",
+    "frequencia_console_lead": "",
+    "obs": "",
+    "alerta": "",
+    "identificador": "",
+    "origem_medium": "",
+    "origem_campaing": "",
+    "origem_source": "",
+    "identificador_ultima_conversao": "",
+    "conversao_duplicada_marketing": ""
+
   });
 
   const [errors, setErrors] = useState({
     nome: false,
     email: false,
-    fone_residencial: false,
+    fone_celular: false,
     cep: false,
   });
 
@@ -162,7 +96,7 @@ const LeedsRegistration: React.FC = () => {
     const newErrors = {
       nome: !data.nome.trim(),
       email: !data.email.trim(),
-      fone_residencial: !data.fone_residencial.trim(),
+      fone_celular: !data.fone_celular.trim(),
       cep: !data.cep.trim(),
     };
     setErrors(newErrors);
@@ -185,11 +119,82 @@ const LeedsRegistration: React.FC = () => {
 
       if (response.ok) {
         setData({
-          local: "casa",
-          nome: "",
-          email: "",
-          fone_residencial: "",
-          cep: "",
+          "nome" : "",
+          "principal": "",
+          "id_cliente": "",
+          "tipo_pessoa": "",
+          "cnpj_cpf": "",
+          "data_nascimento": "",
+          "razao": "",
+          "id_filial": "",
+          "id_contato_tipo": "",
+          "id_candidato_tipo": "",
+          "id_campanha": "",
+          "id_concorrente": "",
+          "id_responsavel": "",
+          "indicado_por": "",
+          "data_cadastro": "20/01/2025",//Obrigatório
+          "data": "",
+          "id_vd_contrato": "",
+          "id_tipo_elemento": "",
+          "velocidade_calculada": "",
+          "id_fornecedor": "",
+          "lead": "",
+          "ativo": "",
+          "id_caixa_ftth": "",
+          "distancia_caixa_mais_proxima": "",
+          "id_prospeccao": "",
+          "id_estagio": "",
+          "ordem_kanban": "",
+          "fone_residencial": "",
+          "fone_comercial": "",
+          "fone_celular": "",//Obrigatório
+          "fone_whatsapp": "",
+          "email": "",
+          "skype": "",
+          "facebook": "",
+          "website": "",
+          "cep": "",
+          "endereco": "",
+          "numero": "",
+          "bairro": "",
+          "complemento": "",
+          "cidade": "",
+          "uf": "",
+          "referencia": "",
+          "moradia": "",
+          "tipo_localidade": "",
+          "latitude": "",
+          "longitude": "",
+          "external_id": "",
+          "external_system": "",
+          "pipe_id_pessoa": "",
+          "cadastro_site": "",
+          "status_viabilidade": "",
+          "tipo_rede": "",
+          "operador_neutro": "",
+          "data_ult_verificacao_viab": "",
+          "caixa_mais_proxima": "",
+          "data_cadastro_lead": "",
+          "velocidade_calculada_lead": "",
+          "quantidade_pessoas_lead": "",
+          "quantidade_smart_lead": "",
+          "frequencia_smart_lead": "",
+          "quantidade_celular_lead": "",
+          "frequencia_celular_lead": "",
+          "quantidade_computador_lead": "",
+          "frequencia_computador_lead": "",
+          "quantidade_console_lead": "",
+          "frequencia_console_lead": "",
+          "obs": "",
+          "alerta": "",
+          "identificador": "",
+          "origem_medium": "",
+          "origem_campaing": "",
+          "origem_source": "",
+          "identificador_ultima_conversao": "",
+          "conversao_duplicada_marketing": ""
+          
         });
 
         if (router) {
@@ -225,10 +230,10 @@ const LeedsRegistration: React.FC = () => {
             <label className="flex items-center">
               <input
                 type="radio"
-                name="local"
+                name="tipo_localidade"
                 value="casa"
-                checked={data.local === "casa"}
-                onChange={() => setData({ ...data, local: "casa" })}
+                checked={data.tipo_localidade === "casa"}
+                onChange={() => setData({ ...data, tipo_localidade: "casa" })}
                 className="text-blue-600 focus:ring-blue-500"
               />
               <span className="ml-2 text-gray-700">Para minha casa</span>
@@ -236,10 +241,10 @@ const LeedsRegistration: React.FC = () => {
             <label className="flex items-center">
               <input
                 type="radio"
-                name="local"
+                name="tipo_localidade"
                 value="empresa"
-                checked={data.local === "empresa"}
-                onChange={() => setData({ ...data, local: "empresa" })}
+                checked={data.tipo_localidade === "empresa"}
+                onChange={() => setData({ ...data, tipo_localidade: "empresa" })}
                 className="text-blue-600 focus:ring-blue-500"
               />
               <span className="ml-2 text-gray-700">Para minha empresa</span>
@@ -252,7 +257,7 @@ const LeedsRegistration: React.FC = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder={data.local === "casa" ? "Nome Completo" : "Razão Social"}
+            placeholder={data.tipo_localidade === "casa" ? "Nome Completo" : "Razão Social"}
             value={data.nome}
             onChange={(e) => setData({ ...data, nome: e.target.value })}
             className={`w-full p-2 border ${
@@ -281,15 +286,15 @@ const LeedsRegistration: React.FC = () => {
           <input
             type="text"
             placeholder="Telefone de Contato"
-            value={data.fone_residencial}
+            value={data.fone_celular}
             onChange={(e) =>
-              setData({ ...data, fone_residencial: e.target.value })
+              setData({ ...data, fone_celular: e.target.value })
             }
             className={`w-full p-2 border ${
-              errors.fone_residencial ? "border-red-500" : "border-gray-300"
+              errors.fone_celular ? "border-red-500" : "border-gray-300"
             } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
-          {errors.fone_residencial && (
+          {errors.fone_celular && (
             <p className="text-sm text-red-500 mt-1">
               Telefone de contato é obrigatório.
             </p>
@@ -321,7 +326,6 @@ const LeedsRegistration: React.FC = () => {
 };
 
 export default LeedsRegistration;
-
 
 
 
