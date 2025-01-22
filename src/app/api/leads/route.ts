@@ -2,7 +2,7 @@ import API_CREDENTIALS from "../config/apiCredentials";
 
 export async function POST(request: Request) {
   try {
-    const leadData = await request.json(); // Recebe os dados do cliente a serem enviados
+    const leadData = await request.json();
     const host = API_CREDENTIALS.host;
     const token = API_CREDENTIALS.token;
 

@@ -4,6 +4,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const LeedsRegistration: React.FC = () => {
+
+  const getCurrentDate = () => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = now.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const [data, setData] = useState({
     "nome": "",
     "principal": "",
@@ -19,7 +28,7 @@ const LeedsRegistration: React.FC = () => {
     "id_concorrente": "",
     "id_responsavel": "",
     "indicado_por": "",
-    "data_cadastro": "20/01/2025",//Obrigatório
+    data_cadastro: getCurrentDate(),//Obrigatório
     "data": "",
     "id_vd_contrato": "",
     "id_tipo_elemento": "",
@@ -89,13 +98,19 @@ const LeedsRegistration: React.FC = () => {
     fone_celular: false,
     cep: false,
   });
+  
 
   const router = typeof window !== "undefined" ? useRouter() : null;
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const validateForm = () => {
     const newErrors = {
       nome: !data.nome.trim(),
-      email: !data.email.trim(),
+      email: !isValidEmail(data.email.trim()),
       fone_celular: !data.fone_celular.trim(),
       cep: !data.cep.trim(),
     };
@@ -133,7 +148,7 @@ const LeedsRegistration: React.FC = () => {
           "id_concorrente": "",
           "id_responsavel": "",
           "indicado_por": "",
-          "data_cadastro": "20/01/2025",//Obrigatório
+          "data_cadastro": "",//Obrigatório
           "data": "",
           "id_vd_contrato": "",
           "id_tipo_elemento": "",
@@ -279,7 +294,7 @@ const LeedsRegistration: React.FC = () => {
             } rounded focus:outline-none focus:ring focus:ring-blue-200`}
           />
           {errors.email && (
-            <p className="text-sm text-red-500 mt-1">E-mail é obrigatório.</p>
+            <p className="text-sm text-red-500 mt-1">E-mail inválido.</p>
           )}
         </div>
         <div className="mb-4">
