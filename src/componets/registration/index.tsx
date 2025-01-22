@@ -198,7 +198,7 @@ const LeedsRegistration: React.FC = () => {
         });
 
         if (router) {
-          router.push("/plansPage");
+          router?.push(`/plansPage?data=${encodeURIComponent(JSON.stringify(data))}`);
         }
       } else {
         const errorData = await response.json();
