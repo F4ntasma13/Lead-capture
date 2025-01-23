@@ -5,9 +5,9 @@ import { useSearchParams } from "next/navigation";
 
 const PlanSelection: React.FC = () => {
   const router = typeof window !== "undefined" ? useRouter() : null;
-  const searchParams = useSearchParams();
+  const searchParams = typeof window !== "undefined" ? useSearchParams() : null;
 
-  const previousData = searchParams.get("data")
+  const previousData = searchParams?.get("data")
     ? JSON.parse(decodeURIComponent(searchParams.get("data")!))
     : null;
 

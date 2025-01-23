@@ -6,11 +6,11 @@ import { useState } from "react";
 
 const FeasibilityForm: React.FC = () => {
   const router = typeof window !== "undefined" ? useRouter() : null;
-  const searchParams = useSearchParams();
+  const searchParams = typeof window !== "undefined" ? useSearchParams() : null;
 
-  const initialData = searchParams.get("data")
+  const initialData = searchParams?.get("data")
     ? JSON.parse(decodeURIComponent(searchParams.get("data")!))
-    : {};
+    : null;
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -20,13 +20,22 @@ const FeasibilityForm: React.FC = () => {
     return `${day}/${month}/${year}`;
   };  
 
+  if (!initialData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600">Carregando informações...</p>
+      </div>
+    );
+  }
+
   const [formData, setFormData] = useState({
-    nome: initialData.nome || "",
-    email: initialData.email || "",
-    fone_celular: initialData.fone_celular || "",
-    plano: initialData.obs?.details || "",
+    nome: initialData?.nome || "",
+    email: initialData?.email || "",
+    fone_celular: initialData?.fone_celular || "",
+    alerta: initialData?.obs?.details || "",
+    cep: initialData?.cep || "",
     endereco: "",
-    observacoes: "",
+    obs: "",
     data_cadastro: getCurrentDate(),//Obrigatório
   });
 
@@ -115,14 +124,28 @@ const FeasibilityForm: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="plano" className="block text-gray-700 font-medium mb-2">
+          <label htmlFor="alerta" className="block text-gray-700 font-medium mb-2">
             Plano:
           </label>
           <input
             type="text"
-            id="plano"
-            name="plano"
-            value={formData.plano}
+            id="alerta"
+            name="alerta"
+            value={formData.alerta}
+            onChange={handleChange}
+            className="w-full border-gray-300 rounded p-2"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="cep" className="block text-gray-700 font-medium mb-2">
+            CEP:
+          </label>
+          <input
+            type="text"
+            id="cep"
+            name="cep"
+            value={formData.cep}
             onChange={handleChange}
             className="w-full border-gray-300 rounded p-2"
           />
@@ -143,13 +166,13 @@ const FeasibilityForm: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="observacoes" className="block text-gray-700 font-medium mb-2">
+          <label htmlFor="obs" className="block text-gray-700 font-medium mb-2">
             Observações:
           </label>
           <textarea
-            id="observacoes"
-            name="observacoes"
-            value={formData.observacoes}
+            id="obs"
+            name="obs"
+            value={formData.obs}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
