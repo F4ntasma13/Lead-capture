@@ -8,35 +8,37 @@ const FeasibilityForm: React.FC = () => {
   const router = typeof window !== "undefined" ? useRouter() : null;
   const searchParams = typeof window !== "undefined" ? useSearchParams() : null;
 
-  const initialData = searchParams?.get("data")
-    ? JSON.parse(decodeURIComponent(searchParams.get("data")!))
-    : null;
+  const clientId = searchParams?.get("id");
 
-  const getCurrentDate = () => {
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, "0");
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const year = now.getFullYear();
-    return `${day}/${month}/${year}`;
-  };  
-
-  if (!initialData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Carregando informações...</p>
-      </div>
-    );
-  }
+  const dataString = searchParams?.get("data");
+  const dataObject = dataString ? JSON.parse(dataString) : null;
+  
+  const Nome = dataObject?.nome || "";
+  const Email = dataObject?.email || "";
+  const FoneCelular = dataObject?.fone_celular || "";
+  const DataCadastro = dataObject?.data_cadastro || "";
+  const Cep = dataObject?.cep || "";
+  const Numero = dataObject?.numero || "";
+  const Bairro = dataObject?.bairro || "";
+  const Referencia = dataObject?.referencia || "";
+  const Obs =
+  dataObject?.obs && typeof dataObject.obs === "object"
+    ? `${dataObject.obs.speed} ${dataObject.obs.price} ${dataObject.obs.details}`
+    : dataObject?.obs || "";
 
   const [formData, setFormData] = useState({
-    nome: initialData?.nome || "",
-    email: initialData?.email || "",
-    fone_celular: initialData?.fone_celular || "",
-    alerta: initialData?.obs?.details || "",
-    cep: initialData?.cep || "",
     endereco: "",
     obs: "",
-    data_cadastro: getCurrentDate(),//Obrigatório
+    id: clientId,
+    nome: Nome,
+    email: Email,
+    fone_celular: FoneCelular,
+    data_cadastro: DataCadastro,
+    cep: Cep,
+    numero: Numero,
+    bairro: Bairro,
+    alerta: Obs,
+    referencia: Referencia
   });
 
 
@@ -49,14 +51,13 @@ const FeasibilityForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
+      const response = await fetch("/api/updateLeads", {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        alert("Dados enviados com sucesso! Bem-vindo a conexão Link!");
         if (router) {
           router?.push("/welcomePage");
         }
@@ -91,7 +92,7 @@ const FeasibilityForm: React.FC = () => {
             name="nome"
             value={formData.nome}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded p-2 "
+            className="w-full border border-gray-300 rounded p-2 "
           />
         </div>
 
@@ -105,7 +106,7 @@ const FeasibilityForm: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded p-2"
+            className="w-full border border-gray-300 rounded p-2"
           />
         </div>
 
@@ -119,7 +120,7 @@ const FeasibilityForm: React.FC = () => {
             name="fone_celular"
             value={formData.fone_celular}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded p-2"
+            className="w-full border border-gray-300 rounded p-2"
           />
         </div>
 
@@ -133,7 +134,7 @@ const FeasibilityForm: React.FC = () => {
             name="alerta"
             value={formData.alerta}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded p-2"
+            className="w-full border border-gray-300 rounded p-2"
           />
         </div>
 
@@ -147,7 +148,7 @@ const FeasibilityForm: React.FC = () => {
             name="cep"
             value={formData.cep}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded p-2"
+            className="w-full border border-gray-300 rounded p-2"
           />
         </div>
 
@@ -159,7 +160,53 @@ const FeasibilityForm: React.FC = () => {
             type="text"
             id="endereco"
             name="endereco"
+            placeholder="Digite o endereço..."
             value={formData.endereco}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="numero" className="block text-gray-700 font-medium mb-2">
+            Número:
+          </label>
+          <input
+            type="text"
+            id="numero"
+            name="numero"
+            placeholder="Digite o número..."
+            value={formData.numero}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="bairro" className="block text-gray-700 font-medium mb-2">
+            Bairro:
+          </label>
+          <input
+            type="text"
+            id="bairro"
+            name="bairro"
+            placeholder="Digite o bairro..."
+            value={formData.bairro}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="referencia" className="block text-gray-700 font-medium mb-2">
+            Referência:
+          </label>
+          <input
+            type="text"
+            id="referencia"
+            name="referencia"
+            placeholder="Digite a referencia..."
+            value={formData.referencia}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
@@ -172,6 +219,7 @@ const FeasibilityForm: React.FC = () => {
           <textarea
             id="obs"
             name="obs"
+            placeholder="Horário para instalação..."
             value={formData.obs}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"

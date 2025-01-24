@@ -133,6 +133,11 @@ const LeedsRegistration: React.FC = () => {
       });
 
       if (response.ok) {
+        const result = await response.json()
+        const clientId = result.data.id
+
+        // console.log("Cliente criado com sucesso. ID:", clientId);
+
         setData({
           "nome" : "",
           "principal": "",
@@ -165,7 +170,7 @@ const LeedsRegistration: React.FC = () => {
           "fone_comercial": "",
           "fone_celular": "",//Obrigatório
           "fone_whatsapp": "",
-          "email": "",
+          "email": "",//Obrigatório
           "skype": "",
           "facebook": "",
           "website": "",
@@ -213,7 +218,7 @@ const LeedsRegistration: React.FC = () => {
         });
 
         if (router) {
-          router?.push(`/plansPage?data=${encodeURIComponent(JSON.stringify(data))}`);
+          router?.push(`/plansPage?data=${encodeURIComponent(JSON.stringify(data))}&id=${clientId}`);
         }
       } else {
         const errorData = await response.json();

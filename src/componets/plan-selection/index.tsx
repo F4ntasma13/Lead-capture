@@ -1,15 +1,23 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const PlanSelection: React.FC = () => {
+
   const router = typeof window !== "undefined" ? useRouter() : null;
   const searchParams = typeof window !== "undefined" ? useSearchParams() : null;
 
-  const previousData = searchParams?.get("data")
-    ? JSON.parse(decodeURIComponent(searchParams.get("data")!))
-    : null;
+  const clientId = searchParams?.get("id")
+  const dataString = searchParams?.get("data");
+
+  const dataObject = dataString ? JSON.parse(dataString) : null;
+
+  const Nome = dataObject?.nome;
+  const Email = dataObject?.email;
+  const FoneCelular = dataObject?.fone_celular;
+  const DataCadastro = dataObject?.data_cadastro;
+  const Cep = dataObject?.cep;
+  const Numero = dataObject?.numero;
 
   const plans = [
     { speed: "360 MEGA", price: "R$ 79,90/mês", details: "PLANO IDEAL PARA REDES SOCIAIS 360MB" },
@@ -19,21 +27,27 @@ const PlanSelection: React.FC = () => {
   ];
 
   const handleSelectPlan = async (obs: typeof plans[0]) => {
-    const combinedData = {
-      ...previousData,
-      obs,
+    const updateData = {
+      id: clientId,
+      nome: Nome,
+      email: Email,
+      fone_celular: FoneCelular,
+      data_cadastro: DataCadastro,
+      cep: Cep,
+      numero: Numero,
+      obs
     };
 
     try {
-      const response = await fetch("/api/leads", {
-        method: "POST",
+      const response = await fetch("/api/updateLeads", {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(combinedData),
+        body: JSON.stringify(updateData),
       });
 
       if (response.ok) {
         if (router) {
-          router?.push(`/feasibilityPage?data=${encodeURIComponent(JSON.stringify(combinedData))}`);
+          router?.push(`/feasibilityPage?data=${encodeURIComponent(JSON.stringify(updateData))}&id=${clientId}&data=${obs}`)
         }
       } else {
         const errorData = await response.json();
