@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-        <header className="bg-gradient-to-r from-blue-600 to-green-500 text-white py-4">
+        <header className="text-blue-800 py-4">
         <div className="container mx-auto flex justify-between items-center">
           <img
             src="/logoCl.png"
@@ -8,7 +8,7 @@ const Header = () => {
             className="h-16"
           />
           <nav>
-            <ul className="flex space-x-4">
+            <ul className="flex center space-x-4">
               <li>
                 <a href="https://conexaolinkes.com.br/" className="hover:underline">
                   Home

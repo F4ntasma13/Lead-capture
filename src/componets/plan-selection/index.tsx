@@ -20,10 +20,10 @@ const PlanSelection: React.FC = () => {
   const Numero = dataObject?.numero;
 
   const plans = [
-    { speed: "360 MEGA", price: "R$ 79,90/mês", details: "PLANO IDEAL PARA REDES SOCIAIS 360MB" },
-    { speed: "500 MEGA", price: "R$ 99,90/mês", details: "PLANO INTERNET + 1 APP STANDARD 500MB" },
-    { speed: "700 MEGA", price: "R$ 129,90/mês", details: "PLANO INTERNET + 1 APP PREMIUM + 2 APPS STANDARD 700MB" },
-    { speed: "700 MEGA", price: "R$ 129,90/mês", details: "PLANO INTERNET + GLOBOPLAY 700MB" },
+    { speed: "360MB", price: "R$ 79,90/mês", details: "PLANO IDEAL PARA REDES SOCIAIS 360MB" },
+    { speed: "500MB", price: "R$ 99,90/mês", details: "INTERNET + 1 APP STANDARD 500MB" },
+    { speed: "700MB", price: "R$ 129,90/mês", details: "INTERNET + 1 APP PREMIUM, 2 STANDARD" },
+    { speed: "700MB", price: "R$ 129,90/mês", details: "INTERNET + GLOBOPLAY 700MB" },
   ];
 
   const handleSelectPlan = async (obs: typeof plans[0]) => {
@@ -60,42 +60,55 @@ const PlanSelection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="container mx-auto">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Escolha seu plano</h1>
-        <p className="text-gray-600 mb-6">Agora chegou a hora de escolher o melhor plano para a sua conexão:</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="min-h-screen">
+    <main className="container mx-auto py-6">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">Escolha seu plano</h1>
+      <p className="text-gray-600 mb-6">Agora chegou a hora de escolher o melhor plano para a sua conexão:</p>
+      <div className="flex flex-col lg:flex-row">
+        <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((obs, index) => (
             <div
               key={index}
               className="bg-[#0849C8] shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg flex flex-col justify-between"
             >
               <div>
-                <h2 className="text-xl font-bold text-[#00E36D]">{obs.speed}</h2>
-                <p className="text-gray-600 text-white">{obs.details}</p>
-                <p className="text-orange-500 font-bold text-white text-lg mt-4">{obs.price}</p>
+                <h2 className="text-5xl font-bold text-white">{obs.speed}</h2>
+                <p className="text-white py-8">{obs.details}</p>
+                <div className="flex-grow flex items-center py-24 justify-center">
+                    <p className="flex text-white font-bold text-2xl mt-4">{obs.price}</p>
+                </div>
               </div>
               <button
                 onClick={() => handleSelectPlan(obs)}
-                className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                className="mt-4 bg-green-500 text-blue-900 px-4 py-2 rounded hover:bg-green-600"
               >
                 Selecionar
               </button>
             </div>
           ))}
         </div>
-        <div className="flex justify-start mt-6">
-          <button
-            className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
-            onClick={() => router?.back()}
-          >
-            Voltar
-          </button>
+        <div className="w-full lg:w-1/3 flex justify-center items-center mt-6 lg:mt-0">
+          <img src="man.webp" alt="Pessoa olhando para os planos" className="max-h-96 lg:max-h-full w-auto" />
         </div>
-      </main>
-    </div>
+      </div>
+      <div className="flex justify-start mt-6">
+        <button
+          className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+          onClick={() => router?.back()}
+        >
+          Voltar
+        </button>
+      </div>
+    </main>
+  </div>
+
+
   );
 };
 
 export default PlanSelection;
+
+
+
+
 

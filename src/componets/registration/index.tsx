@@ -231,10 +231,10 @@ const LeedsRegistration: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg"
+        className="bg-gray-100 p-8 rounded-lg shadow-md w-full max-w-lg"
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Preencha as informações corretamente

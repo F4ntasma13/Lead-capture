@@ -28,7 +28,7 @@ const FeasibilityForm: React.FC = () => {
 
   const [formData, setFormData] = useState({
     endereco: "",
-    obs: "",
+    obs: Obs,
     id: clientId,
     nome: Nome,
     email: Email,
@@ -37,7 +37,7 @@ const FeasibilityForm: React.FC = () => {
     cep: Cep,
     numero: Numero,
     bairro: Bairro,
-    alerta: Obs,
+    alerta: "",
     referencia: Referencia
   });
 
@@ -72,10 +72,10 @@ const FeasibilityForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="bg-white min-h-screen bg-gray-100 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg"
+        className="bg-gray-100 p-8 rounded-lg shadow-md w-full max-w-lg"
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Preencha os dados</h2>
         <p className="text-sm text-gray-600 mb-6">
@@ -125,14 +125,14 @@ const FeasibilityForm: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="alerta" className="block text-gray-700 font-medium mb-2">
+          <label htmlFor="obs" className="block text-gray-700 font-medium mb-2">
             Plano:
           </label>
           <input
             type="text"
-            id="alerta"
-            name="alerta"
-            value={formData.alerta}
+            id="obs"
+            name="obs"
+            value={formData.obs}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
@@ -167,7 +167,7 @@ const FeasibilityForm: React.FC = () => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="numero" className="block text-gray-700 font-medium mb-2">
             Número:
           </label>
@@ -180,9 +180,9 @@ const FeasibilityForm: React.FC = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
-        </div>
+        </div> */}
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="bairro" className="block text-gray-700 font-medium mb-2">
             Bairro:
           </label>
@@ -195,9 +195,9 @@ const FeasibilityForm: React.FC = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
-        </div>
+        </div> */}
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="referencia" className="block text-gray-700 font-medium mb-2">
             Referência:
           </label>
@@ -210,17 +210,17 @@ const FeasibilityForm: React.FC = () => {
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
-        </div>
+        </div> */}
 
         <div className="mb-4">
-          <label htmlFor="obs" className="block text-gray-700 font-medium mb-2">
+          <label htmlFor="alerta" className="block text-gray-700 font-medium mb-2">
             Observações:
           </label>
           <textarea
-            id="obs"
-            name="obs"
+            id="alerta"
+            name="alerta"
             placeholder="Horário para instalação..."
-            value={formData.obs}
+            value={formData.alerta}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded p-2"
           />
