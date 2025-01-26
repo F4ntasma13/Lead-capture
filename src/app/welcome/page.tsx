@@ -32,7 +32,7 @@ const WelcomePage: React.FC = () => {
         </div>
         <button
           onClick={handleRedirect}
-          className="px-16 py-3 bg-yellow-500 hover:bg-[#00ce01] text-lg font-semibold text-black rounded-lg shadow-md transition duration-300 ease-in-out hover:scale-110"
+          className="px-16 py-3 bg-yellow-400 hover:bg-[#00ce01] text-lg font-semibold text-black rounded-lg shadow-md transition duration-300 ease-in-out hover:scale-110"
         >
           Volte ao site oficial
         </button>

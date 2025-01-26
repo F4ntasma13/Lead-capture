@@ -47,7 +47,7 @@ const PlanSelection: React.FC = () => {
 
       if (response.ok) {
         if (router) {
-          router?.push(`/feasibilityPage?data=${encodeURIComponent(JSON.stringify(updateData))}&id=${clientId}&data=${obs}`)
+          router?.push(`/feasibility-page?data=${encodeURIComponent(JSON.stringify(updateData))}&id=${clientId}&data=${obs}`)
         }
       } else {
         const errorData = await response.json();
@@ -60,10 +60,10 @@ const PlanSelection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="bg-gradient-to-b from-blue-400 to-blue-900 min-h-screen">
     <main className="container mx-auto py-6">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Escolha seu plano</h1>
-      <p className="text-gray-600 mb-6">Agora chegou a hora de escolher o melhor plano para a sua conexão:</p>
+      <h1 className="text-2xl font-bold text-white mb-4">Escolha seu plano</h1>
+      <p className="text-white mb-6">Agora chegou a hora de escolher o melhor plano para a sua conexão:</p>
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((obs, index) => (

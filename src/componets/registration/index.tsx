@@ -218,7 +218,7 @@ const LeedsRegistration: React.FC = () => {
         });
 
         if (router) {
-          router?.push(`/plansPage?data=${encodeURIComponent(JSON.stringify(data))}&id=${clientId}`);
+          router?.push(`/plans-page?data=${encodeURIComponent(JSON.stringify(data))}&id=${clientId}`);
         }
       } else {
         const errorData = await response.json();
@@ -231,10 +231,10 @@ const LeedsRegistration: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="bg-gradient-to-b from-blue-400 to-blue-900 min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-100 p-8 rounded-lg shadow-md w-full max-w-lg"
+        className="bg-gradient-to-b from-blue-100 to-blue-200 bg-gradient-to-b from-blue-400 p-8 rounded-lg shadow-md w-full max-w-lg"
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Preencha as informações corretamente
