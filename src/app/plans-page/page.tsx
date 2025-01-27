@@ -4,7 +4,7 @@ import PlanSelection from "@/componets/plan-selection"
 
 const Plan = () => {
   return (
-    <div>
+    <div className="">
       <Header />
       <PlanSelection />
       <Footer />

@@ -69,7 +69,7 @@ const PlanSelection: React.FC = () => {
           {plans.map((obs, index) => (
             <div
               key={index}
-              className="bg-[#0849C8] shadow-md rounded-lg p-6 border border-gray-200 hover:shadow-lg flex flex-col justify-between"
+              className="bg-[#0849C8] shadow-md rounded-lg p-6 border border-green-300 hover:shadow-lg flex flex-col justify-between"
             >
               <div>
                 <h2 className="text-5xl font-bold text-white">{obs.speed}</h2>

@@ -75,7 +75,7 @@ const FeasibilityForm: React.FC = () => {
     <div className="bg-gradient-to-b from-blue-400 to-blue-900 min-h-screen bg-gray-100 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-gradient-to-b from-blue-100 to-blue-200 p-8 rounded-lg shadow-md w-full max-w-lg"
+        className="bg-gradient-to-b from-blue-50 to-blue-100 p-8 rounded-lg shadow-md w-full max-w-lg"
       >
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Preencha os dados</h2>
         <p className="text-sm text-gray-600 mb-6">
