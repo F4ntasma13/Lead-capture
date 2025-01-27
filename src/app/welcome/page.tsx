@@ -8,13 +8,12 @@ const WelcomePage: React.FC = () => {
       };    
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-blue-400 to-blue-900 flex flex-col items-center justify-center text-white overflow-hidden">
+    <div onClick={handleRedirect} className="relative min-h-screen bg-gradient-to-b from-blue-400 to-blue-900 flex flex-col items-center justify-center text-white overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="firework"></div>
         <div className="firework"></div>
         <div className="firework"></div>
       </div>
-      {/* bg-gradient-to-r from-blue-600 to-green-500 */}
       <div className="relative z-10 text-center px-4">
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 animate-pulse">
           Bem-vindo à Conexão Link!
